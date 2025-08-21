@@ -1,4 +1,9 @@
+# Let's Get Rust Bootcamp Project
+
+This is a guided project to learn about Rust
+
 ## Setup & Building
+
 ```bash
 cargo install cargo-watch
 cd app-service
@@ -10,26 +15,30 @@ cd ..
 ```
 
 ## Run servers locally (Manually)
-#### App service
+
+### App service
+
 ```bash
 cd app-service
 cargo watch -q -c -w src/ -w assets/ -w templates/ -x run
 ```
 
-visit http://localhost:8000
+Visit `http://localhost:8000`
 
-#### Auth service
+### Auth service
+
 ```bash
 cd auth-service
 cargo watch -q -c -w src/ -w assets/ -x run
 ```
 
-visit http://localhost:3000
+Visit `http://localhost:3000`
 
-## Run servers locally (Docker)
+### Run servers locally (Docker)
+
 ```bash
 docker compose build
 docker compose up
 ```
 
-visit http://localhost:8000 and http://localhost:3000
+Visit `http://localhost:8000` and `http://localhost:3000`
