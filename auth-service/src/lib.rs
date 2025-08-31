@@ -16,15 +16,15 @@ impl Application {
             .nest_service("/", ServeDir::new("assets"))
             .route("/signup", post(routes::signup))
             .route("/login", post(routes::login))
-            .route("/logout", post(routes::logout))
             .route("/verify_2fa", post(routes::verify_2fa))
+            .route("/logout", post(routes::logout))
             .route("/verify_token", post(routes::verify_token));
 
         let listener = tokio::net::TcpListener::bind(address).await?;
         let address = listener.local_addr()?.to_string();
         let server = axum::serve(listener, router);
 
-        Ok(Self { server, address })
+        Ok(Application { server, address })
     }
 
     pub async fn run(self) -> Result<(), std::io::Error> {

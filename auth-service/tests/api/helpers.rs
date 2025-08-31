@@ -45,10 +45,6 @@ impl TestApplication {
             .expect("Failed to signup")
     }
 
-    pub fn get_random_email() -> String {
-        format!("{}@example.com", Uuid::new_v4())
-    }
-
     pub async fn get_login(&self) -> reqwest::Response {
         self.http_client
             .post(&format!("{}/login", &self.address))
@@ -80,4 +76,8 @@ impl TestApplication {
             .await
             .expect("Failed to verify token")
     }
+}
+
+pub fn get_random_email() -> String {
+    format!("{}@example.com", Uuid::new_v4())
 }
