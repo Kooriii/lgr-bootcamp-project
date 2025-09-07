@@ -37,7 +37,7 @@ impl TestApplication {
             .get(&format!("{}/", &self.address))
             .send()
             .await
-            .expect("Failed to execute request.")
+            .expect("Failed to execute request (root).")
     }
 
     pub async fn post_signup<Body>(&self, body: &Body) -> reqwest::Response
@@ -52,12 +52,16 @@ impl TestApplication {
             .expect("Failed to signup")
     }
 
-    pub async fn get_login(&self) -> reqwest::Response {
+    pub async fn post_login<Body>(&self, body: &Body) -> reqwest::Response
+    where
+        Body: serde::Serialize,
+    {
         self.http_client
             .post(&format!("{}/login", &self.address))
+            .json(body)
             .send()
             .await
-            .expect("Failed to login")
+            .expect("Failed to execute request (login).")
     }
 
     pub async fn get_logout(&self) -> reqwest::Response {
