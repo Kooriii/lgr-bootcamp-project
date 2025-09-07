@@ -1,8 +1,6 @@
 use std::sync::Arc;
 
-use auth_service::{
-    app_state::AppState, services::hashmap_user_store::HashmapUserStore, Application,
-};
+use auth_service::{app_state::AppState, services::hashmap_user_store::HashmapUserStore, Application};
 use tokio::sync::RwLock;
 use uuid::Uuid;
 
@@ -26,10 +24,7 @@ impl TestApplication {
 
         let http_client = reqwest::Client::new();
 
-        Self {
-            address,
-            http_client,
-        }
+        Self { address, http_client }
     }
 
     pub async fn get_root(&self) -> reqwest::Response {
